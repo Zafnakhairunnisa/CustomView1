@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.view.View;
 
 import androidx.appcompat.widget.AppCompatButton;
 
@@ -28,13 +29,17 @@ public class CustomButton extends AppCompatButton {
 
     private void init() {
         setBackgroundColor(Color.BLUE); // Warna awal button
-        setOnClickListener(v -> {
-            if (isColorChanged) {
-                setBackgroundColor(Color.BLUE); // Warna sesuai dengan kriteria
-                isColorChanged = false;
-            } else {
-                setBackgroundColor(Color.RED); // Warna berubah sesuai dengan kriteria
-                isColorChanged = true;
+
+        setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isColorChanged) {
+                    setBackgroundColor(Color.BLUE); // Warna sesuai dengan kriteria
+                    isColorChanged = false;
+                } else {
+                    setBackgroundColor(Color.RED); // Warna berubah sesuai dengan kriteria
+                    isColorChanged = true;
+                }
             }
         });
     }
